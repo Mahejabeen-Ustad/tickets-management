@@ -1,0 +1,75 @@
+<div class="container">
+    <div class="header">
+        Ticket list
+    </div>
+    <div class="menu-options">
+        <div class="status">
+            Ticket Status
+        </div>
+        <div>
+            dropdown
+        </div>
+        <div>
+            date
+        </div>
+        <div>
+            search
+        </div>
+        <div class="create-button">
+            <button (click)="addTicket()"> + create new ticket</button>
+        </div>
+    </div>
+    <div class="main">
+        <div class="table-main">
+            <table class="table table-bordered" >
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Display ID</th>
+                        <th>Date of creation</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ticket of ticketList | paginate: {itemsPerPage:5, currentPage:p};">
+                        <td>{{ ticket.title }}</td>
+                        <td>{{ ticket.id }}</td>
+                        <td>{{ ticket.created_date | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{ ticket.description }}</td>
+                        <td>{{ ticket.status }}</td>
+                    </tr>
+                </tbody>
+                <pagination-controls (pageChange)="p = $event" class="float-right"></pagination-controls>
+            </table>
+        </div>        
+    </div>
+</div>
+
+import { Component, OnInit } from '@angular/core';
+import { Ticket, TICKES_LIST_DATA_KEY } from 'src/app/services/ticket.service';
+
+@Component({
+  selector: 'app-ticket-list',
+  templateUrl: './ticket-list.component.html',
+  styleUrls: ['./ticket-list.component.scss']
+})
+export class TicketListComponent implements OnInit {
+
+  ticketList: Array<Ticket> = [];
+  p:number = 1;
+  key : string = 'id';
+  reverse: boolean = false;
+  constructor() {
+    if(sessionStorage.getItem(TICKES_LIST_DATA_KEY)) {
+      const sessionData: any = sessionStorage.getItem(TICKES_LIST_DATA_KEY)
+      // this.ticketList = JSON.parse(JSON.stringify(sessionStorage.getItem(TICKES_LIST_DATA_KEY)))
+      this.ticketList = JSON.parse(sessionData)
+      console.log(this.ticketList)
+    }
+   }
+
+  ngOnInit(): void {
+  }
+
+}
