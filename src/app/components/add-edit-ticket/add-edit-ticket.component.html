@@ -1,0 +1,79 @@
+<div class="main">
+    <div class="header">
+        {{title}}
+    </div>
+    <div>
+        <form [formGroup]="addEditTicketForm">
+            <div class="container">
+    
+                <div class="title">
+                    <div class="label">Title</div>
+                    <div class="value">
+                        <mat-form-field>
+                            <input matInput placeholder="title" formControlName="title" maxlength="50">
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+                <div class="id">
+                    <div class="label">Display ID</div>
+                    <div class="value">
+                        <mat-form-field>
+                            <input matInput placeholder="Display id" formControlName="id" maxlength="50">
+                        </mat-form-field>
+                    </div>
+                </div>
+    
+                <div class="description">
+                    <div class="label">Description</div>
+                    <div class="value">
+                        <mat-form-field>
+                            <input matInput placeholder="description" formControlName="description" maxlength="50">
+                        </mat-form-field>
+                    </div>
+                    
+                </div>
+    
+                <div class="date">
+                    <div class="label">Date of creation</div>
+                    <div class="value">
+                        <mat-form-field>
+                            <input matInput placeholder="created date" formControlName="created_date" maxlength="50">
+                        </mat-form-field>
+                    </div>
+                    
+                </div>
+    
+                <!-- <div class="status">
+                    <div class="label">Status</div>
+                    <div class="value">
+                        <mat-form-field>
+                            <mat-select formControlName="status">
+                                <mat-option *ngFor="let item of statusList"
+                                    [value]="item">{{item}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div> -->
+    
+                <div class="status">
+                    <div class="label">Status</div>
+                    <div class="value">
+                        <mat-form-field>
+                            <select formControlName="status">
+                                <option *ngFor="let item of statusList"
+                                    [value]="item">{{item}}
+                                </option>
+                            </select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="action">
+        <button (click)="cancel()">Cancel</button>
+        <button (click)="addEditHandler()">Update</button>
+    </div>
+</div> 

@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="menu-options">
+        <div class="status">
+            Ticket Status
+        </div>
+        <div>
+            dropdown
+        </div>
+        <div>
+            date
+        </div>
+        <div>
+            search
+        </div>
+        <div class="create-button">
+            <button (click)="addTicket(false)"> + create new ticket</button>
+        </div>
+    </div>
+    <div class="main">
+        <div class="ticket-list" class="mat-elevation-z8">
+            <mat-table [dataSource]="dataSource" matSort [matSortDisableClear]="true" >
+            <!-- ticket Column -->
+            <ng-container matColumnDef="Title">
+                <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for title "(click)="applySort('title')" > Title </th>
+                <td mat-cell *matCellDef="let element">
+                  <!-- <div *ngIf="element.title"> -->
+                    <span [innerHTML]="element.title"></span>
+                  <!-- </div> -->
+                </td>
+            </ng-container>
+
+            <!-- Display ID Column -->
+            <ng-container matColumnDef="Display ID">
+                <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for Display ID "(click)="applySort('Display ID')" > Display ID </th>
+                <td mat-cell *matCellDef="let element">
+                  <!-- <div *ngIf="element.title"> -->
+                    <span [innerHTML]="element.id"></span>
+                  <!-- </div> -->
+                </td>
+            </ng-container>
+
+            <!-- Date of creation Column -->
+            <ng-container matColumnDef="Date of creation">
+                <th width="10%" mat-header-cell *matHeaderCellDef> Date of creation </th>
+                <td mat-cell *matCellDef="let element">
+                  <!-- <div *ngIf="element.title"> -->
+                    <span [innerHTML]="element.created_date"></span>
+                  <!-- </div> -->
+                </td>
+            </ng-container>
+
+            <!-- Description Column -->
+            <ng-container matColumnDef="Description">
+                <th width="10%" mat-header-cell *matHeaderCellDef > Description </th>
+                <td mat-cell *matCellDef="let element">
+                  <!-- <div *ngIf="element.title"> -->
+                    <span [innerHTML]="element.description"></span>
+                  <!-- </div> -->
+                </td>
+            </ng-container>
+
+            <!-- status Column -->
+            <ng-container matColumnDef="status">
+                <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for status "(click)="applySort('status')" > status </th>
+                <td mat-cell *matCellDef="let element">
+                  <!-- <div *ngIf="element.title"> -->
+                    <span [innerHTML]="element.status"></span>
+                  <!-- </div> -->
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </mat-table>
+            <mat-paginator #MatPaginator="matPaginator" (page)="onPageChange($event)" [pageSizeOptions]="[5,25,50,75]"></mat-paginator>
+          </div>
+    </div>
+</div>
