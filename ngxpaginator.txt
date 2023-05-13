@@ -73,3 +73,115 @@ export class TicketListComponent implements OnInit {
   }
 
 }
+
+
+addeedit form
+<div class="main">
+    <div class="header">
+        {{title}}
+    </div>
+    <div>
+        <form [formGroup]="addEditTicketForm">
+            <div class="container">
+    
+                <div class="title">
+                    <div class="label">Title</div>
+                    <div class="value">
+                        <!-- <mat-form-field>
+                            <input  placeholder="title" formControlName="title" maxlength="50">
+                        </mat-form-field> -->
+                        <mat-form-field>
+                            <input matInput type="number" formControlName="id">
+                          </mat-form-field>
+                    </div>
+                </div>
+    
+                <div class="id">
+                    <div class="label">Display ID</div>
+                    <div class="value">
+                        <!-- <mat-form-field>
+                            <input matInput placeholder="Display id" formControlName="id" maxlength="50">
+                        </mat-form-field> -->
+                        <mat-form-field>
+                            <!-- <mat-label>ID:</mat-label> -->
+                            <input matInput type="number" formControlName="id">
+                          </mat-form-field>
+                    </div>
+                </div>
+    
+                <div class="description">
+                    <div class="label">Description</div>
+                    <div class="value">
+                        <!-- <mat-form-field>
+                            <input matInput placeholder="description" formControlName="description" maxlength="50">
+                        </mat-form-field> -->
+                        <mat-form-field>
+                            <!-- <mat-label>Description:</mat-label> -->
+                            <textarea matInput formControlName="description"></textarea>
+                          </mat-form-field>
+                    </div>
+                    
+                </div>
+    
+                <div class="date">
+                    <!-- <div class="label">Date of creation</div> -->
+                    <div class="value">
+                        <!-- <mat-form-field>
+                            <input matInput placeholder="created date" formControlName="created_date" maxlength="50">
+                        </mat-form-field> -->
+                        <!-- <mat-form-field>
+                            <mat-label>Job Start Date </mat-label>
+                            <input matInput [matDatepicker]="created_date" formControlName="created_date">
+                            <mat-datepicker-toggle matSuffix [for]="created_date"></mat-datepicker-toggle>
+                            <mat-datepicker #created_date></mat-datepicker>
+                        </mat-form-field> -->
+                        <mat-form-field>
+                            <!-- <mat-label>Created Date:</mat-label> -->
+                            <input matInput [matDatepicker]="created_date" formControlName="created_date">
+                            <mat-datepicker-toggle matSuffix [for]="created_date"></mat-datepicker-toggle>
+                            <mat-datepicker #created_date></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                </div>
+    
+                <!-- <div class="status">
+                    <div class="label">Status</div>
+                    <div class="value">
+                        <mat-form-field>
+                            <mat-select formControlName="status">
+                                <mat-option *ngFor="let item of statusList"
+                                    [value]="item">{{item}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div> -->
+    
+                <div class="status">
+                    <div class="label">Status</div>
+                    <div class="value">
+                        <!-- <mat-form-field>
+                            <select formControlName="status">
+                                <option *ngFor="let item of statusList"
+                                    [value]="item">{{item}}
+                                </option>
+                            </select>
+                        </mat-form-field> -->
+                        <mat-form-field>
+                            <!-- <mat-label>Status:</mat-label> -->
+                            <mat-select formControlName="status">
+                              <mat-option value="Open">Open</mat-option>
+                              <mat-option value="Closed">Closed</mat-option>
+                              <mat-option value="In Progress">In Progress</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="action">
+        <button (click)="cancel()">Cancel</button>
+        <button (click)="addEditHandler()">Update</button>
+    </div>
+</div>   

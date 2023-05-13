@@ -1,47 +1,43 @@
 <div class="main">
     <div class="header">
-        {{title}}
+        <h3>{{title}}</h3>
     </div>
     <div>
         <form [formGroup]="addEditTicketForm">
             <div class="container">
     
-                <div class="title">
-                    <div class="label">Title</div>
-                    <div class="value">
-                        <mat-form-field>
-                            <input matInput placeholder="title" formControlName="title" maxlength="50">
-                        </mat-form-field>
-                    </div>
+                <div class="field-style">
+                    <mat-label class="label">Title</mat-label>
+                    <mat-form-field appearance="outline">
+                            <input class="input" matInput placeholder="title" formControlName="title" maxlength="128">
+                    </mat-form-field>
+                    <mat-error></mat-error>
                 </div>
     
-                <div class="id">
-                    <div class="label">Display ID</div>
-                    <div class="value">
-                        <mat-form-field>
-                            <input matInput placeholder="Display id" formControlName="id" maxlength="50">
-                        </mat-form-field>
-                    </div>
+                <div class="field-style">
+                    <mat-label class="label">Display ID</mat-label>
+                    <mat-form-field appearance="outline">
+                            <input readonly="true" class="input" matInput placeholder="Display id" formControlName="id" maxlength="128">
+                    </mat-form-field>
+                    <mat-error></mat-error>
                 </div>
     
-                <div class="description">
-                    <div class="label">Description</div>
-                    <div class="value">
-                        <mat-form-field>
-                            <input matInput placeholder="description" formControlName="description" maxlength="50">
-                        </mat-form-field>
-                    </div>
-                    
+                <div class="field-style">
+                    <mat-label class="label">Description</mat-label>
+                    <mat-form-field appearance="outline">
+                        <input class="desc" matInput placeholder="description" formControlName="description" maxlength="50">
+                    </mat-form-field>
+                    <mat-error></mat-error>
                 </div>
     
-                <div class="date">
-                    <div class="label">Date of creation</div>
-                    <div class="value">
-                        <mat-form-field>
-                            <input matInput placeholder="created date" formControlName="created_date" maxlength="50">
-                        </mat-form-field>
-                    </div>
-                    
+                <div class="field-style">
+                    <mat-label class="label">Date of creation</mat-label>
+                    <mat-form-field>
+                        <input matInput readonly="true" [matDatepicker]="created_date" formControlName="created_date">
+                        <mat-datepicker-toggle [disabled]="true" matSuffix [for]="created_date"></mat-datepicker-toggle>
+                        <mat-datepicker #created_date></mat-datepicker>
+                    </mat-form-field>
+                    <mat-error></mat-error>
                 </div>
     
                 <!-- <div class="status">
@@ -57,23 +53,27 @@
                     </div>
                 </div> -->
     
-                <div class="status">
-                    <div class="label">Status</div>
-                    <div class="value">
-                        <mat-form-field>
-                            <select formControlName="status">
-                                <option *ngFor="let item of statusList"
-                                    [value]="item">{{item}}
-                                </option>
-                            </select>
-                        </mat-form-field>
-                    </div>
+                <div class="field-style">
+                    <mat-label class="label margin-status">Status</mat-label>
+                    <mat-form-field >
+                        <!-- <select class="input" formControlName="status">
+                            <option *ngFor="let item of statusList"
+                                [value]="item">{{item}}
+                            </option>
+                        </select> -->
+                        <mat-select class="input" formControlName="status">
+                            <mat-option *ngFor="let item of statusList"
+                                [value]="item">{{item}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error></mat-error>
                 </div>
             </div>
         </form>
     </div>
     <div class="action">
-        <button (click)="cancel()">Cancel</button>
-        <button (click)="addEditHandler()">Update</button>
+        <button class="cancel" (click)="cancel()">Cancel</button>
+        <button class="update" (click)="addEditHandler()">Update</button>
     </div>
 </div> 

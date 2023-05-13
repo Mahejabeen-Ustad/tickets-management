@@ -1,19 +1,98 @@
-.container {
-    height: 200vh;
-    position: relative;
-    .header {
-        // display: block;
-        position: static;
-        background-color: rgb(7, 7, 160);
-        height: 5vh;
-        padding: 1em;
-        font-size: larger;
-        color: white;
-    }
-    .menu-options {
+.main-container {
+    .container {
         display: flex;
-        .create-button {
+        flex-direction: row;
+        height: 4em;
+        padding: 2em 0em 0em 2em;
+        
+        .menu-options {
+            display: flex;
+            flex-direction: row;
+            // flex-wrap: wrap;
+            // align-content: flex-start;
+            width: 100%;
+        }
+
+        .date {
+
+        }
+
+        // .create-button {
+        //     display: flex;
+        //     align-content: flex-end;
+        // }
+
+        .status {
             
+            // display: flex;
+            p {
+                // font-weight: 500;
+                color: black;
+                font-size: medium;
+                width: 8vw;
+            }
+        }
+
+        .dropdown-select {
+            height: 2em;
+            border: 0.0625em solid #E6E6E6;
+            border-radius: 0.4em;
+        }
+
+        .create_ticket_btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #167782 0% 0% no-repeat padding-box;
+            border-radius: 0.4em;
+            font-size: 1em;
+            color: #FFFFFF;
+            height: 2em;
+            padding-right: 16px;
+            width: 16em;
+            border: 2px;
+            margin-right: 2em;
+
+            p {
+                margin: 0px;
+            }
+
+        }
+    
+        .search_row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width: 80%;
+            margin: 1.875em 0em;
+            margin-top: 0em;
+ 
+    
+            .serch_input_row {
+                margin-left: 4em;
+                display: flex;
+                flex-direction: row;
+                width: 35%;
+                background: #FFFFFF 0% 0% no-repeat padding-box;
+                border: 0.0625em solid #E6E6E6;
+                border-radius: 0.4em;
+                opacity: 1;
+                height: 2em;
+            
+            }
+            
+            .search_icon {
+                    color: #707070;
+            }
+    
+            
+            .search_input {
+                width: 135%;
+                border: none;
+                height: 1.875em;
+                outline: none;
+            }
         }
     }
+
 }

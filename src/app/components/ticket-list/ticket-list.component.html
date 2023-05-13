@@ -1,24 +1,50 @@
-<div class="container">
+<div class="main-container">
+  <div class="container">
     <div class="menu-options">
-        <div class="status">
-            Ticket Status
-        </div>
-        <div>
-            dropdown
-        </div>
-        <div>
-            date
-        </div>
-        <div>
-            search
-        </div>
-        <div class="create-button">
-            <button (click)="addTicket(false)"> + create new ticket</button>
-        </div>
+      <div class="status">
+        <p>Ticket Status</p>
+      </div>
+      <div class="drop_down">
+        <!-- <mat-form-field appearance="outline"> -->
+            <select class="dropdown-select">
+                <option *ngFor="let data of statusList" [value]="data">{{data}}</option>
+            </select>
+        <!-- </mat-form-field> -->
     </div>
+      <div class="date">
+        <mat-form-field appearance="outline">
+          <!-- <mat-label>Enter a date range</mat-label> -->
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="From">
+            <input matEndDate placeholder="To">
+          </mat-date-range-input>
+          <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+      <div class="search_row">
+        <div class="serch_input_row">
+          <div>
+            <mat-icon class="search_icon">search</mat-icon>
+          </div>
+          <div>
+            <input class="search_input" matInput placeholder="Search By Display ID or Title...">
+          </div>
+          <!-- <div fxFlex="10%" fxLayoutAlign="center center" class="close_btn">
+                  <mat-icon *ngIf="showSearchCloseIcon" class="close_icon">close</mat-icon>
+              </div> -->
+        </div>
+      </div>
+    </div>
+    <button  class="create_ticket_btn" (click)="addTicket(false)">
+      <mat-icon class="btn_icon">add</mat-icon>
+      <p>Create New Ticket</p>
+    </button>
+  </div>
     <div class="main">
         <div class="ticket-list" class="mat-elevation-z8">
-            <mat-table [dataSource]="dataSource" matSort [matSortDisableClear]="true" >
+            <mat-table [dataSource]="dataSource" matSort  >
             <!-- ticket Column -->
             <ng-container matColumnDef="Title">
                 <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for title "(click)="applySort('title')" > Title </th>
@@ -72,7 +98,11 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </mat-table>
-            <mat-paginator #MatPaginator="matPaginator" (page)="onPageChange($event)" [pageSizeOptions]="[5,25,50,75]"></mat-paginator>
+            <mat-paginator 
+            [pageSizeOptions]="[10]"
+            [length]="totalRecords"
+            #MatPaginator="matPaginator" 
+            (page)="onPageChange($event)" ></mat-paginator>
           </div>
     </div>
 </div>
