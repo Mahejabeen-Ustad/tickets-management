@@ -1,4 +1,7 @@
 .main-container {
+    .main {
+        margin-top: 0.5em;
+    }
     .container {
         display: flex;
         flex-direction: row;
@@ -8,25 +11,12 @@
         .menu-options {
             display: flex;
             flex-direction: row;
-            // flex-wrap: wrap;
-            // align-content: flex-start;
             width: 100%;
         }
 
-        .date {
-
-        }
-
-        // .create-button {
-        //     display: flex;
-        //     align-content: flex-end;
-        // }
 
         .status {
-            
-            // display: flex;
             p {
-                // font-weight: 500;
                 color: black;
                 font-size: medium;
                 width: 8vw;
@@ -34,9 +24,10 @@
         }
 
         .dropdown-select {
-            height: 2em;
+            height: 2.5em;
             border: 0.0625em solid #E6E6E6;
             border-radius: 0.4em;
+            width: 100%;
         }
 
         .create_ticket_btn {
@@ -47,7 +38,7 @@
             border-radius: 0.4em;
             font-size: 1em;
             color: #FFFFFF;
-            height: 2em;
+            height: 2.5em;
             padding-right: 16px;
             width: 16em;
             border: 2px;
@@ -63,13 +54,12 @@
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            width: 80%;
+            width: 100%;
             margin: 1.875em 0em;
             margin-top: 0em;
  
     
             .serch_input_row {
-                margin-left: 4em;
                 display: flex;
                 flex-direction: row;
                 width: 35%;
@@ -77,7 +67,8 @@
                 border: 0.0625em solid #E6E6E6;
                 border-radius: 0.4em;
                 opacity: 1;
-                height: 2em;
+                height: 2.5em;
+                margin-left: 2em;
             
             }
             
@@ -96,3 +87,8 @@
     }
 
 }
+:host ::ng-deep a {
+    text-decoration: none;
+    color: inherit;
+  }
+  

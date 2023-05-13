@@ -9,25 +9,25 @@
                 <div class="field-style">
                     <mat-label class="label">Title</mat-label>
                     <mat-form-field appearance="outline">
-                            <input class="input" matInput placeholder="title" formControlName="title" maxlength="128">
+                        <input class="input" matInput placeholder="title" formControlName="title">
+                        <mat-error> {{getErrorMessage('title')}}</mat-error>
                     </mat-form-field>
-                    <mat-error></mat-error>
+                    
                 </div>
     
                 <div class="field-style">
                     <mat-label class="label">Display ID</mat-label>
                     <mat-form-field appearance="outline">
-                            <input readonly="true" class="input" matInput placeholder="Display id" formControlName="id" maxlength="128">
+                            <input readonly="true" class="input" matInput placeholder="Display id" formControlName="id">
                     </mat-form-field>
-                    <mat-error></mat-error>
                 </div>
     
                 <div class="field-style">
                     <mat-label class="label">Description</mat-label>
                     <mat-form-field appearance="outline">
-                        <input class="desc" matInput placeholder="description" formControlName="description" maxlength="50">
+                        <textarea class="desc" matInput placeholder="description" formControlName="description"></textarea>
+                        <mat-error>{{getErrorMessage('description')}}</mat-error>
                     </mat-form-field>
-                    <mat-error></mat-error>
                 </div>
     
                 <div class="field-style">
@@ -37,43 +37,23 @@
                         <mat-datepicker-toggle [disabled]="true" matSuffix [for]="created_date"></mat-datepicker-toggle>
                         <mat-datepicker #created_date></mat-datepicker>
                     </mat-form-field>
-                    <mat-error></mat-error>
                 </div>
-    
-                <!-- <div class="status">
-                    <div class="label">Status</div>
-                    <div class="value">
-                        <mat-form-field>
-                            <mat-select formControlName="status">
-                                <mat-option *ngFor="let item of statusList"
-                                    [value]="item">{{item}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div> -->
     
                 <div class="field-style">
                     <mat-label class="label margin-status">Status</mat-label>
                     <mat-form-field >
-                        <!-- <select class="input" formControlName="status">
-                            <option *ngFor="let item of statusList"
-                                [value]="item">{{item}}
-                            </option>
-                        </select> -->
                         <mat-select class="input" formControlName="status">
                             <mat-option *ngFor="let item of statusList"
                                 [value]="item">{{item}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <mat-error></mat-error>
                 </div>
             </div>
         </form>
     </div>
     <div class="action">
         <button class="cancel" (click)="cancel()">Cancel</button>
-        <button class="update" (click)="addEditHandler()">Update</button>
+        <button class="update" [disabled]="!addEditTicketForm.valid" [ngClass]="{'disable':!addEditTicketForm.valid}" (click)="addEditHandler()">Update</button>
     </div>
 </div> 

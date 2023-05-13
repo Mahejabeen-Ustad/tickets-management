@@ -11,16 +11,6 @@ export interface Ticket {
   status: string
 }
 
-export interface Options {
-  sortBy ?: string;
-  sortDirection ?: string;
-  searchText?: string,
-  filters ?: any,
-  itemsPerPage?: number,
-  pageNumber?: number
-}
-
-
 export const ticketList: Array<Ticket> = [
   {
     id: 1,

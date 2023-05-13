@@ -1,108 +1,99 @@
 <div class="main-container">
   <div class="container">
     <div class="menu-options">
-      <div class="status">
+      <div class="status" style="flex: 5%;">
         <p>Ticket Status</p>
       </div>
-      <div class="drop_down">
-        <!-- <mat-form-field appearance="outline"> -->
-            <select class="dropdown-select">
-                <option *ngFor="let data of statusList" [value]="data">{{data}}</option>
-            </select>
-        <!-- </mat-form-field> -->
-    </div>
-      <div class="date">
-        <mat-form-field appearance="outline">
-          <!-- <mat-label>Enter a date range</mat-label> -->
-          <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="From">
-            <input matEndDate placeholder="To">
-          </mat-date-range-input>
-          <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-date-range-picker #picker></mat-date-range-picker>
+      <div class="drop_down" style="flex: 10%;">
+        <select class="dropdown-select">
+          <option *ngFor="let data of statusList" [value]="data">{{data}}</option>
+        </select>
+      </div>
+      <div class="date" style="flex: 20%;">
+        <mat-form-field style="margin-left: 2em; height: 3.5em; top: -5px;" appearance="outline">
+          <mat-label>Enter a date range</mat-label>
+          <div style="display: flex;">
+            <div>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date">
+                <input matEndDate placeholder="End date">
+              </mat-date-range-input>
+            </div>
+            <div style="margin-top: -2em; padding-top: 1em;">
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </div>
+          </div>
         </mat-form-field>
       </div>
-      <div class="search_row">
+      <div class="search_row" style="flex: 65%;">
         <div class="serch_input_row">
           <div>
             <mat-icon class="search_icon">search</mat-icon>
           </div>
-          <div>
+          <div style="width: 100%;">
             <input class="search_input" matInput placeholder="Search By Display ID or Title...">
           </div>
-          <!-- <div fxFlex="10%" fxLayoutAlign="center center" class="close_btn">
-                  <mat-icon *ngIf="showSearchCloseIcon" class="close_icon">close</mat-icon>
-              </div> -->
         </div>
       </div>
     </div>
-    <button  class="create_ticket_btn" (click)="addTicket(false)">
+    <button class="create_ticket_btn" (click)="addTicket(false)">
       <mat-icon class="btn_icon">add</mat-icon>
       <p>Create New Ticket</p>
     </button>
   </div>
-    <div class="main">
-        <div class="ticket-list" class="mat-elevation-z8">
-            <mat-table [dataSource]="dataSource" matSort  >
-            <!-- ticket Column -->
-            <ng-container matColumnDef="Title">
-                <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for title "(click)="applySort('title')" > Title </th>
-                <td mat-cell *matCellDef="let element">
-                  <!-- <div *ngIf="element.title"> -->
-                    <span [innerHTML]="element.title"></span>
-                  <!-- </div> -->
-                </td>
-            </ng-container>
+  <div class="main">
+    <div class="ticket-list" class="mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource" matSort>
+        <!-- title Column -->
+        <ng-container matColumnDef="title">
+          <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for title "> Title </th>
+          <td mat-cell *matCellDef="let element" style="color: rgb(21, 177, 205);">
+            <a routerLink="/tickets/{{element.id}}" matTooltip="View details for {{element.title}}">
+              <span [innerHTML]="element.title"></span>
+            </a>
+          </td>
+        </ng-container>
 
-            <!-- Display ID Column -->
-            <ng-container matColumnDef="Display ID">
-                <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for Display ID "(click)="applySort('Display ID')" > Display ID </th>
-                <td mat-cell *matCellDef="let element">
-                  <!-- <div *ngIf="element.title"> -->
-                    <span [innerHTML]="element.id"></span>
-                  <!-- </div> -->
-                </td>
-            </ng-container>
+        <!-- Display ID Column -->
+        <ng-container matColumnDef="id">
+          <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for Display ID "
+            (click)="applySort('Display ID')"> Display ID </th>
+          <td mat-cell *matCellDef="let element">
+            <span [innerHTML]="element.id"></span>
+          </td>
+        </ng-container>
 
-            <!-- Date of creation Column -->
-            <ng-container matColumnDef="Date of creation">
-                <th width="10%" mat-header-cell *matHeaderCellDef> Date of creation </th>
-                <td mat-cell *matCellDef="let element">
-                  <!-- <div *ngIf="element.title"> -->
-                    <span [innerHTML]="element.created_date"></span>
-                  <!-- </div> -->
-                </td>
-            </ng-container>
+        <!-- Date of creation Column -->
+        <ng-container matColumnDef="created_date">
+          <th width="10%" mat-header-cell *matHeaderCellDef> Date of creation </th>
+          <td mat-cell *matCellDef="let element">
+            <span [innerHTML]="element.created_date"></span>
+          </td>
+        </ng-container>
 
-            <!-- Description Column -->
-            <ng-container matColumnDef="Description">
-                <th width="10%" mat-header-cell *matHeaderCellDef > Description </th>
-                <td mat-cell *matCellDef="let element">
-                  <!-- <div *ngIf="element.title"> -->
-                    <span [innerHTML]="element.description"></span>
-                  <!-- </div> -->
-                </td>
-            </ng-container>
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <th width="10%" mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element">
+            <span [innerHTML]="element.description"></span>
+          </td>
+        </ng-container>
 
-            <!-- status Column -->
-            <ng-container matColumnDef="status">
-                <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for status "(click)="applySort('status')" > status </th>
-                <td mat-cell *matCellDef="let element">
-                  <!-- <div *ngIf="element.title"> -->
-                    <span [innerHTML]="element.status"></span>
-                  <!-- </div> -->
-                </td>
-            </ng-container>
-        
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            </mat-table>
-            <mat-paginator 
-            [pageSizeOptions]="[10]"
-            [length]="totalRecords"
-            #MatPaginator="matPaginator" 
-            (page)="onPageChange($event)" ></mat-paginator>
-          </div>
+        <!-- status Column -->
+        <ng-container matColumnDef="status">
+          <th width="10%" mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Change sorting for status "
+            (click)="applySort('status')"> status </th>
+          <td mat-cell *matCellDef="let element">
+            <span [innerHTML]="element.status"></span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[10]" [length]="totalRecords" #MatPaginator="matPaginator"
+        (page)="onPageChange($event)"></mat-paginator>
     </div>
+  </div>
 </div>
