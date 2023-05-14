@@ -5,35 +5,36 @@
         <p>Ticket Status</p>
       </div>
       <div class="drop_down" style="flex: 10%;">
-        <select class="dropdown-select">
-          <option *ngFor="let data of statusList" [value]="data">{{data}}</option>
-        </select>
+        <mat-select class="dropdown-select" [formControl]="">
+          <mat-option  *ngFor="let data of statusList" [value]="data">{{data}}</mat-option>
+        </mat-select>
       </div>
-      <div class="date" style="flex: 20%;">
-        <mat-form-field style="margin-left: 2em; height: 3.5em; top: -5px;" appearance="outline">
-          <mat-label>Enter a date range</mat-label>
-          <div style="display: flex;">
+      <!-- <div class="date" style="flex: 20%;" appearance="outline"> -->
+        <!-- <mat-form-field style="margin-left: 2em; height: 3.5em; top: -5px;" appearance="outline"> -->
+          <!-- <mat-label>From - To</mat-label> -->
+          <div class="date" style=" display: flex;flex: 20%;" appearance="outline">
             <div>
-              <mat-date-range-input [rangePicker]="picker">
-                <input matStartDate placeholder="Start date">
-                <input matEndDate placeholder="End date">
+              <mat-date-range-input class="input-style" [rangePicker]="picker">
+                <input matStartDate placeholder="From - ">
+                <input matEndDate placeholder="To">
               </mat-date-range-input>
             </div>
-            <div style="margin-top: -2em; padding-top: 1em;">
+            <div>
               <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-date-range-picker #picker></mat-date-range-picker>
             </div>
           </div>
-        </mat-form-field>
-      </div>
+        <!-- </mat-form-field> -->
+      <!-- </div> -->
       <div class="search_row" style="flex: 65%;">
         <div class="serch_input_row">
-          <div>
+          <!-- <div> -->
             <mat-icon class="search_icon">search</mat-icon>
-          </div>
-          <div style="width: 100%;">
-            <input class="search_input" matInput placeholder="Search By Display ID or Title...">
-          </div>
+          <!-- </div> -->
+          <!-- <div > -->
+            <input  [formControl]="displayIdTitle" class="search_input" matInput placeholder="Search By Display ID or Title">
+
+          <!-- </div> -->
         </div>
       </div>
     </div>
@@ -92,7 +93,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </mat-table>
-      <mat-paginator [pageSizeOptions]="[10]" [length]="totalRecords" #MatPaginator="matPaginator"
+      <mat-paginator [pageSizeOptions]="[10,15,20]" [length]="totalRecords" #MatPaginator="matPaginator"
         (page)="onPageChange($event)"></mat-paginator>
     </div>
   </div>

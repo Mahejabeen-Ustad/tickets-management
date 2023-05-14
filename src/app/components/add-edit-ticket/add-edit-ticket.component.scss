@@ -6,55 +6,12 @@
         margin-left: 2em;
     }
 }
-// .title {
-//     display: flex;
-//     flex-direction: row;
-// }
-
-// .label {
-//     color: dimgray;;
-//     margin: 1.3em 0em 0em 1em;
-// }
-
-// .margin-label {
-//     margin-right: 12em;
-// }
-
-// .margin-id {
-//     margin-right: 9.5em;
-// }
-
-// .margin-desc {
-//     margin-right: 8.75em;
-// }
-
-// .margin-date {
-//     margin-right: 6.7em;
-// }
-
-// .margin-status {
-//     margin-right: 11em;
-// }
-
-// .input {
-//     height: 1.5em;
-//     border-radius: 0.3em;
-//     border: 1px solid #ccc;
-//     width: 18em;
-// }
-
-// .desc {
-//     border-radius: 0.3em;
-//     border: 1px solid #ccc;
-//     width: 18em;
-//     height: 8em;
-// }
 
 .action {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-top: 6em;
+    margin-top: 1em;
     .update {
         margin-right: 2em;
         margin-left: 2em;

@@ -1,15 +1,17 @@
-import { Component, Input, OnInit, ViewChild, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, EventEmitter, Output, OnChanges, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { TICKES_LIST_DATA_KEY, ticketList } from 'src/app/services/ticket.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortHeaderIntl, SortDirection } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
   selector: 'app-ticket-list',
   templateUrl: './ticket-list.component.html',
-  styleUrls: ['./ticket-list.component.scss']
+  styleUrls: ['./ticket-list.component.scss'],
+  // encapsulation: ViewEncapsulation.None
 })
 export class TicketListComponent implements OnInit {
 
@@ -21,12 +23,26 @@ export class TicketListComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   
   searchValue: string;
-  statusList = ['Open', 'In-progress', 'Completed', 'Deferred'];
+  statusList = ['All', 'Open', 'In-progress', 'Completed', 'Deferred'];
   totalRecords: number = 0;
   pageSize: number = 10;
   /** page event variable to handle the page events */
   pageEvent: PageEvent;
   searchKeyword: string;
+
+  /**serach/filter Object*/
+  statusFilter = new FormControl('');
+  displayIdTitle = new FormControl('');
+
+  filterValues = {
+    status: '',
+    // date: {
+    //   from:'',
+    //   to: ''
+    // },
+    title:'',
+    id: ''
+  }
   constructor(
     private readonly router: Router
   ) {
@@ -40,6 +56,28 @@ export class TicketListComponent implements OnInit {
     this.totalRecords = this.dataSource.data.length;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate = this.createFilter();
+
+    this.statusFilter.valueChanges.subscribe(status => {
+      this.filterValues.status = status;
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
+
+    this.displayIdTitle.valueChanges.subscribe(data => {
+      this.filterValues.id = data;
+      this.filterValues.title = data
+      this.dataSource.filter = JSON.stringify(this.filterValues);
+    });
+  }
+
+  createFilter(): (data: any, filter: string) => boolean {
+    let filterFunction = function(data, filter): boolean {
+      let searchTerms = JSON.parse(filter);
+      return data.status.toLowerCase().indexOf(searchTerms.status) !== -1
+        && (data.id.toString().toLowerCase().indexOf(searchTerms.id) !== -1
+        || data.title.toString().toLowerCase().indexOf(searchTerms.title) !== -1)
+    }
+    return filterFunction;
   }
 
   onPageChange(event){
@@ -52,4 +90,8 @@ export class TicketListComponent implements OnInit {
   addTicket(isEdit:boolean = false) {
     isEdit ? this.router.navigate(['/tickets', 10]) : this.router.navigate(['/create-ticket']);
   }
+
+  // filterHandler(filterValue, filterColumn) {
+    
+  // }
 }

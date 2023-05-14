@@ -51,37 +51,27 @@
         }
     
         .search_row {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            width: 100%;
-            margin: 1.875em 0em;
-            margin-top: 0em;
- 
-    
             .serch_input_row {
                 display: flex;
                 flex-direction: row;
-                width: 35%;
+                align-items: center;
+                width: 45%;
                 background: #FFFFFF 0% 0% no-repeat padding-box;
-                border: 0.0625em solid #E6E6E6;
-                border-radius: 0.4em;
                 opacity: 1;
                 height: 2.5em;
                 margin-left: 2em;
-            
+                border: 1px solid #ccc;
+                border-radius: 4px !important;
             }
             
             .search_icon {
                     color: #707070;
             }
-    
             
             .search_input {
-                width: 135%;
                 border: none;
-                height: 1.875em;
                 outline: none;
+                margin-top: 5px;
             }
         }
     }
@@ -90,5 +80,16 @@
 :host ::ng-deep a {
     text-decoration: none;
     color: inherit;
-  }
+}
+
+.date {
+    margin-left: 2em;
+    height: 2.5em;
+    top: -5px;
+    border: 1px solid #ccc;
+    border-radius: 4px !important;
+    .input-style {
+        padding: 0.51em !important;
+    }
+}
   

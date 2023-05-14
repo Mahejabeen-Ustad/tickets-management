@@ -24,21 +24,21 @@ export const ticketList: Array<Ticket> = [
     title: "Email not working",
     description: "Unable to send or receive emails",
     created_date: new Date("2022-01-02"),
-    status: "Open"
+    status: "In-progress"
   },
   {
     id: 3,
     title: "Slow network",
     description: "Network connection is slow",
     created_date: new Date("2022-01-03"),
-    status: "Open"
+    status: "In-progress"
   },
   {
     id: 4,
     title: "Printer not working",
     description: "Printer is not printing anything",
     created_date: new Date("2022-01-04"),
-    status: "Open"
+    status: "In-progress"
   },
   {
     id: 5,
