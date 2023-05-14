@@ -20,29 +20,31 @@
                 color: black;
                 font-size: medium;
                 width: 8vw;
+                margin-top: 0.5em;
             }
         }
 
         .dropdown-select {
-            height: 2.5em;
+            height: 1.7em;
             border: 0.0625em solid #E6E6E6;
             border-radius: 0.4em;
             width: 100%;
+            padding-top: 9px;
         }
 
         .create_ticket_btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #167782 0% 0% no-repeat padding-box;
+            
+            padding-right: 16px;
+            width: 16em;
+            border: 2px;
+            margin-right: 2em;background: #167782 0% 0% no-repeat padding-box;
             border-radius: 0.4em;
             font-size: 1em;
             color: #FFFFFF;
             height: 2.5em;
-            padding-right: 16px;
-            width: 16em;
-            border: 2px;
-            margin-right: 2em;
 
             p {
                 margin: 0px;
@@ -73,6 +75,16 @@
                 outline: none;
                 margin-top: 5px;
             }
+            // for clear filter button 
+            // .clear-btn {
+            //     margin-left: 2.7em;
+            //     background: #167782 0% 0% no-repeat padding-box;
+            //     border-radius: 0.4em;
+            //     font-size: 1em;
+            //     color: #FFFFFF;
+            //     height: 2.5em;
+            //     border: none;
+            // }
         }
     }
 
@@ -83,6 +95,8 @@
 }
 
 .date {
+    flex: 25%;
+    display: flex;
     margin-left: 2em;
     height: 2.5em;
     top: -5px;

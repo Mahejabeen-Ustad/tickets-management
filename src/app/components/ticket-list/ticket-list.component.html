@@ -5,18 +5,15 @@
         <p>Ticket Status</p>
       </div>
       <div class="drop_down" style="flex: 10%;">
-        <mat-select class="dropdown-select" [formControl]="">
+        <mat-select class="dropdown-select" [formControl]="statusFilter">
           <mat-option  *ngFor="let data of statusList" [value]="data">{{data}}</mat-option>
         </mat-select>
       </div>
-      <!-- <div class="date" style="flex: 20%;" appearance="outline"> -->
-        <!-- <mat-form-field style="margin-left: 2em; height: 3.5em; top: -5px;" appearance="outline"> -->
-          <!-- <mat-label>From - To</mat-label> -->
-          <div class="date" style=" display: flex;flex: 20%;" appearance="outline">
+          <div class="date" appearance="outline">
             <div>
               <mat-date-range-input class="input-style" [rangePicker]="picker">
-                <input matStartDate placeholder="From - ">
-                <input matEndDate placeholder="To">
+                <input matStartDate placeholder="From - " [formControl]="fromDateFilter" >
+                <input matEndDate placeholder="To" [formControl]="toDateFilter">
               </mat-date-range-input>
             </div>
             <div>
@@ -24,18 +21,12 @@
               <mat-date-range-picker #picker></mat-date-range-picker>
             </div>
           </div>
-        <!-- </mat-form-field> -->
-      <!-- </div> -->
-      <div class="search_row" style="flex: 65%;">
+      <div class="search_row" style="display:flex; flex: 65%;">
         <div class="serch_input_row">
-          <!-- <div> -->
             <mat-icon class="search_icon">search</mat-icon>
-          <!-- </div> -->
-          <!-- <div > -->
             <input  [formControl]="displayIdTitle" class="search_input" matInput placeholder="Search By Display ID or Title">
-
-          <!-- </div> -->
         </div>
+        <!-- <button class="clear-btn" (click)="clearFilters()">clear filters</button> -->
       </div>
     </div>
     <button class="create_ticket_btn" (click)="addTicket(false)">

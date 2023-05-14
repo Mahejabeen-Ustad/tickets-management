@@ -16,63 +16,63 @@ export const ticketList: Array<Ticket> = [
     id: 1,
     title: "Server down",
     description: "Unable to access the server",
-    created_date: new Date("2022-01-01"),
+    created_date: new Date("2023-01-01"),
     status: "Open"
   },
   {
     id: 2,
     title: "Email not working",
     description: "Unable to send or receive emails",
-    created_date: new Date("2022-01-02"),
+    created_date: new Date("2020-01-02"),
     status: "In-progress"
   },
   {
     id: 3,
     title: "Slow network",
     description: "Network connection is slow",
-    created_date: new Date("2022-01-03"),
+    created_date: new Date("2020-01-03"),
     status: "In-progress"
   },
   {
     id: 4,
     title: "Printer not working",
     description: "Printer is not printing anything",
-    created_date: new Date("2022-01-04"),
+    created_date: new Date("2019-01-04"),
     status: "In-progress"
   },
   {
     id: 5,
     title: "Software not responding",
     description: "Software is not responding",
-    created_date: new Date("2022-01-05"),
+    created_date: new Date("2018-01-05"),
     status: "Open"
   },
   {
     id: 6,
     title: "Cannot access shared folder",
     description: "Unable to access shared folder",
-    created_date: new Date("2022-01-06"),
+    created_date: new Date("2017-01-06"),
     status: "Open"
   },
   {
     id: 7,
     title: "Website not loading",
     description: "Website is not loading on any browser",
-    created_date: new Date("2022-01-07"),
+    created_date: new Date("2017-01-07"),
     status: "Open"
   },
   {
     id: 8,
     title: "VPN not connecting",
     description: "Unable to connect to VPN",
-    created_date: new Date("2022-01-08"),
+    created_date: new Date("2016-01-08"),
     status: "Open"
   },
   {
     id: 9,
     title: "Keyboard not working",
     description: "Keyboard is not responding",
-    created_date: new Date("2022-01-09"),
+    created_date: new Date("2016-01-09"),
     status: "Open"
   },
   {
@@ -114,7 +114,7 @@ export const ticketList: Array<Ticket> = [
     id: 15,
     title: "Video not playing",
     description: "Videos are not playing on any player",
-    created_date: new Date("2022-01-15"),
+    created_date: new Date("2020-01-15"),
     status: "Open"
   }
 ]

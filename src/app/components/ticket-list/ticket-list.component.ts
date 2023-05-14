@@ -11,7 +11,6 @@ import { FormControl } from '@angular/forms';
   selector: 'app-ticket-list',
   templateUrl: './ticket-list.component.html',
   styleUrls: ['./ticket-list.component.scss'],
-  // encapsulation: ViewEncapsulation.None
 })
 export class TicketListComponent implements OnInit {
 
@@ -31,15 +30,16 @@ export class TicketListComponent implements OnInit {
   searchKeyword: string;
 
   /**serach/filter Object*/
-  statusFilter = new FormControl('');
+  statusFilter = new FormControl('All');
   displayIdTitle = new FormControl('');
-
+  fromDateFilter = new FormControl('');
+  toDateFilter = new FormControl('');
   filterValues = {
     status: '',
-    // date: {
-    //   from:'',
-    //   to: ''
-    // },
+    date: {
+      from:'',
+      to: ''
+    },
     title:'',
     id: ''
   }
@@ -68,14 +68,27 @@ export class TicketListComponent implements OnInit {
       this.filterValues.title = data
       this.dataSource.filter = JSON.stringify(this.filterValues);
     });
+
+    this.fromDateFilter.valueChanges.subscribe((value) => {
+      this.filterValues.date.from = value;
+      this.dataSource.filter = JSON.stringify(this.filterValues)
+    });
+
+    this.toDateFilter.valueChanges.subscribe((value) => {
+      this.filterValues.date.to = value;
+      this.dataSource.filter = JSON.stringify(this.filterValues)
+    });
+    
   }
 
   createFilter(): (data: any, filter: string) => boolean {
     let filterFunction = function(data, filter): boolean {
       let searchTerms = JSON.parse(filter);
-      return data.status.toLowerCase().indexOf(searchTerms.status) !== -1
+      return searchTerms.status == 'All' ? true : data.status.toLowerCase().indexOf(searchTerms.status.toLowerCase()) !== -1
         && (data.id.toString().toLowerCase().indexOf(searchTerms.id) !== -1
-        || data.title.toString().toLowerCase().indexOf(searchTerms.title) !== -1)
+              || searchTerms.title ? data.title.toString().toLowerCase().indexOf(searchTerms.title) !== -1 : true)
+        && (searchTerms.date && searchTerms.date.from && searchTerms.date.to ?
+               (new Date(data.created_date) >= new Date(searchTerms.date.from) && new Date(data.created_date) <= new Date(searchTerms.date.to)) : true)
     }
     return filterFunction;
   }
@@ -87,11 +100,12 @@ export class TicketListComponent implements OnInit {
     }
   }
 
+  /**add ticket handler */
   addTicket(isEdit:boolean = false) {
     isEdit ? this.router.navigate(['/tickets', 10]) : this.router.navigate(['/create-ticket']);
   }
 
-  // filterHandler(filterValue, filterColumn) {
-    
+  /**to clear all filters */
+  // clearFilters() {
   // }
 }
