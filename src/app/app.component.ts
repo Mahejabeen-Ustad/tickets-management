@@ -11,7 +11,9 @@ export class AppComponent {
   title = 'ticket-management';
   constructor(private readonly router: Router) {
     /**setting tickets list data in storage */
-    localStorage.setItem(TICKES_LIST_DATA_KEY, JSON.stringify(ticketList));
+    if(!localStorage.getItem(TICKES_LIST_DATA_KEY)) {
+      localStorage.setItem(TICKES_LIST_DATA_KEY, JSON.stringify(ticketList));
+    }
     this.router.navigate(['/tickets']);
    }
 }
