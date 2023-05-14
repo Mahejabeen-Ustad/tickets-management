@@ -18,12 +18,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { DatePipe } from './pipes/date.pipe';
 @NgModule({
   declarations: [
     AppComponent,
     TicketListComponent,
     AddEditTicketComponent,
-    DialogComponent
+    DialogComponent,
+    DatePipe
   ],
   imports: [
     BrowserModule,

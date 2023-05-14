@@ -68,7 +68,7 @@
         <ng-container matColumnDef="created_date">
           <th width="10%" mat-header-cell *matHeaderCellDef> Date of creation </th>
           <td mat-cell *matCellDef="let element">
-            <span [innerHTML]="element.created_date"></span>
+            <span [innerHTML]="element.created_date | date:'YYYY-MM-DD hh mm'"></span>
           </td>
         </ng-container>
 
